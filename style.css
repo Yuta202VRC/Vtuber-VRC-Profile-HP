@@ -498,3 +498,74 @@ footer p,footer small{
   aspect-ratio:auto;
   overflow:hidden
 }
+
+/* Opening: reveal once, then start the ambient scene at 1.9 seconds. */
+@keyframes soft-enter {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes sky-enter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes star-drift {
+  0%, 100% { transform: translateY(0); opacity: .25; }
+  50% { transform: translateY(-18px); opacity: .8; }
+}
+@keyframes shooting-star {
+  0%, 72%, 100% { opacity: 0; transform: translate(0, 0) rotate(-22deg); }
+  74% { opacity: .8; transform: translate(0, 0) rotate(-22deg); }
+  88% { opacity: 0; transform: translate(-320px, 130px) rotate(-22deg); }
+}
+header { animation: soft-enter .8s cubic-bezier(.2,.7,.2,1) both; }
+.intro { animation: soft-enter .8s .15s cubic-bezier(.2,.7,.2,1) both; }
+.two-personas { animation: soft-enter .8s .35s cubic-bezier(.2,.7,.2,1) both; }
+.activities { animation: soft-enter .8s .65s cubic-bezier(.2,.7,.2,1) both; }
+.links { animation: soft-enter .8s .85s cubic-bezier(.2,.7,.2,1) both; }
+footer { animation: soft-enter .8s 1s cubic-bezier(.2,.7,.2,1) both; }
+.persona { animation: gentle-float 6s 1.9s ease-in-out infinite; }
+.star-field {
+  position: fixed; inset: 0; overflow: hidden; pointer-events: none;
+  z-index: -1; animation: sky-enter 1.2s 1.9s both;
+}
+.star {
+  position: absolute; left: var(--x); top: var(--y);
+  width: var(--size); height: var(--size); border-radius: 50%;
+  background: #b6e3ff; opacity: .25; box-shadow: 0 0 5px #b6e3ff55;
+  animation: star-drift 8s calc(1.9s + var(--phase)) ease-in-out infinite;
+}
+.shooting-star {
+  position: absolute; top: 15%; left: 80%; width: 100px; height: 2px;
+  background: linear-gradient(90deg, #d9f3ff, transparent); opacity: 0;
+  animation: shooting-star 9s 1.9s linear infinite;
+}
+.motion-toggle {
+  position: fixed; right: 130px; bottom: 20px; width: 18px; height: 18px;
+  z-index: 5; accent-color: #b6e3ff; cursor: pointer;
+}
+.motion-label {
+  position: fixed; bottom: 10px; right: 10px; z-index: 4;
+  padding: 8px 12px 8px 35px; border: 1px solid #ffffff30;
+  background: #101b30ee; border-radius: 10px; font-size: 14px; cursor: pointer;
+}
+.motion-off { display: none; }
+.motion-toggle:focus-visible { outline: 3px solid #b6e3ff; outline-offset: 3px; }
+.motion-toggle:checked ~ header,
+.motion-toggle:checked ~ main .intro,
+.motion-toggle:checked ~ main .two-personas,
+.motion-toggle:checked ~ main .activities,
+.motion-toggle:checked ~ main .links,
+.motion-toggle:checked ~ footer { animation: none; }
+.motion-toggle:checked ~ main .persona,
+.motion-toggle:checked ~ .star-field * { animation-play-state: paused; }
+.motion-toggle:checked ~ .star-field { visibility: hidden; }
+.motion-toggle:checked ~ .motion-label .motion-on { display: none; }
+.motion-toggle:checked ~ .motion-label .motion-off { display: inline; }
+body { padding-bottom: 48px; }
+@media (prefers-reduced-motion: reduce) {
+  header, .intro, .two-personas, .activities, .links, footer, .persona,
+  .star-field, .star-field * { animation: none !important; }
+  .star-field, .motion-toggle, .motion-label { display: none; }
+}
+.motion-label { width: 150px; text-align: center; }
