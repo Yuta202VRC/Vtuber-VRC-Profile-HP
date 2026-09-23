@@ -514,9 +514,10 @@ footer p,footer small{
   50% { transform: translateY(-18px); opacity: .8; }
 }
 @keyframes shooting-star {
-  0%, 72%, 100% { opacity: 0; transform: translate(0, 0) rotate(-22deg); }
-  74% { opacity: .8; transform: translate(0, 0) rotate(-22deg); }
-  88% { opacity: 0; transform: translate(-320px, 130px) rotate(-22deg); }
+  0% { opacity: 0; transform: translate(0, 0) rotate(-22deg); }
+  2% { opacity: .8; transform: translate(0, 0) rotate(-22deg); }
+  16% { opacity: 0; transform: translate(-320px, 130px) rotate(-22deg); }
+  100% { opacity: 0; transform: translate(-320px, 130px) rotate(-22deg); }
 }
 header { animation: soft-enter .8s cubic-bezier(.2,.7,.2,1) both; }
 .intro { animation: soft-enter .8s .15s cubic-bezier(.2,.7,.2,1) both; }
@@ -538,7 +539,7 @@ footer { animation: soft-enter .8s 1s cubic-bezier(.2,.7,.2,1) both; }
 .shooting-star {
   position: absolute; top: 15%; left: 80%; width: 100px; height: 2px;
   background: linear-gradient(90deg, #d9f3ff, transparent); opacity: 0;
-  animation: shooting-star 9s 1.9s linear infinite;
+  animation: shooting-star 9s 3s linear infinite;
 }
 .motion-toggle {
   position: fixed; right: 130px; bottom: 20px; width: 18px; height: 18px;
@@ -569,3 +570,39 @@ body { padding-bottom: 48px; }
   .star-field, .motion-toggle, .motion-label { display: none; }
 }
 .motion-label { width: 150px; text-align: center; }
+
+/* Extra interactions: tilt wraps the floating figure so both can run together. */
+body { isolation: isolate; }
+.ambient { z-index: -2; }
+.star-field { z-index: -1; }
+.persona-tilt { min-width: 0; transition: transform .18s ease-out; }
+.persona-tilt .persona { height: 100%; }
+.activities { animation: none; }
+.activity-card { transition: opacity .75s ease, transform .75s cubic-bezier(.2,.7,.2,1); }
+.activity-card.reveal-pending { opacity: 0; transform: translateY(28px); }
+.activity-card:focus-within { opacity: 1; transform: none; }
+.link-card { transition: transform .16s ease, background .2s, border-color .2s; }
+.link-card:active { transform: scale(.96); background: #29445f; }
+.activity-body > a { transition: transform .16s ease, color .2s; }
+.activity-body > a:active { transform: scale(.97); }
+.paw-trail { display: flex; justify-content: space-around; align-items: center; height: 42px; margin: -24px 0 24px; pointer-events: none; }
+.paw { width: 23px; height: 23px; fill: #b6e3ff; opacity: 0; animation: paw-step 6s calc(1.9s + var(--step) * .45s) infinite; }
+.paw:nth-child(even) { align-self: flex-start; rotate: 12deg; }
+.paw:nth-child(odd) { rotate: -12deg; }
+@keyframes paw-step {
+  0%, 42%, 100% { opacity: 0; transform: scale(.7); }
+  8% { opacity: .65; transform: scale(1.08); }
+  15% { opacity: .55; transform: scale(1); }
+  34% { opacity: .15; transform: scale(1); }
+}
+.motion-disabled .paw { animation-play-state: paused; visibility: hidden; }
+.motion-disabled .persona-tilt, .motion-disabled .activity-card,
+.motion-disabled .link-card, .motion-disabled .activity-body > a { transition: none; }
+.motion-disabled .link-card:active, .motion-disabled .activity-body > a:active { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .paw { animation: none; visibility: hidden; }
+  .persona-tilt, .activity-card, .link-card, .activity-body > a { transition: none; }
+  .activity-card.reveal-pending { opacity: 1; transform: none; }
+  .link-card:active, .activity-body > a:active { transform: none; }
+}
+@media(max-width:700px) { .paw-trail { margin-top: -14px; } }

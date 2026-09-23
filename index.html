@@ -8,6 +8,7 @@
 <meta name="theme-color" content="#101e35">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23101e35'/%3E%3Ctext x='18' y='46' font-family='sans-serif' font-size='46' font-weight='700' fill='%23b8e5ff'%3Ey%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="style.css">
+<script src="animations.js" defer></script>
 </head>
 <body>
 <input class="motion-toggle" type="checkbox" id="pause-motion" aria-label="アニメーションを停止">
@@ -61,16 +62,17 @@
 </div>
 </div>
 <div class="two-personas">
-<figure class="persona vtuber-persona">
+<div class="persona-tilt"><figure class="persona vtuber-persona">
 <img src="assets/vtuber.png" alt="VTuberのyuta。茶髪に耳とヘッドホン、白いパーカーの立ち絵" width="3703" height="7872">
 <figcaption>VTuber</figcaption>
-</figure>
-<figure class="persona vrc-persona">
+</figure></div>
+<div class="persona-tilt"><figure class="persona vrc-persona">
 <img src="assets/avatar.png" alt="VRChatのyuta。水色のデフォルメされたケモノアバター" width="1254" height="1254">
 <figcaption>VRChat</figcaption>
-</figure>
+</figure></div>
 </div>
 </section>
+<div class="paw-trail" aria-hidden="true"><svg class="paw" style="--step:0" viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="28" rx="10" ry="8"/><ellipse cx="7" cy="18" rx="4" ry="5" transform="rotate(-25 7 18)"/><ellipse cx="15" cy="10" rx="4" ry="5"/><ellipse cx="25" cy="10" rx="4" ry="5"/><ellipse cx="33" cy="18" rx="4" ry="5" transform="rotate(25 33 18)"/></svg><svg class="paw" style="--step:1" viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="28" rx="10" ry="8"/><ellipse cx="7" cy="18" rx="4" ry="5" transform="rotate(-25 7 18)"/><ellipse cx="15" cy="10" rx="4" ry="5"/><ellipse cx="25" cy="10" rx="4" ry="5"/><ellipse cx="33" cy="18" rx="4" ry="5" transform="rotate(25 33 18)"/></svg><svg class="paw" style="--step:2" viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="28" rx="10" ry="8"/><ellipse cx="7" cy="18" rx="4" ry="5" transform="rotate(-25 7 18)"/><ellipse cx="15" cy="10" rx="4" ry="5"/><ellipse cx="25" cy="10" rx="4" ry="5"/><ellipse cx="33" cy="18" rx="4" ry="5" transform="rotate(25 33 18)"/></svg><svg class="paw" style="--step:3" viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="28" rx="10" ry="8"/><ellipse cx="7" cy="18" rx="4" ry="5" transform="rotate(-25 7 18)"/><ellipse cx="15" cy="10" rx="4" ry="5"/><ellipse cx="25" cy="10" rx="4" ry="5"/><ellipse cx="33" cy="18" rx="4" ry="5" transform="rotate(25 33 18)"/></svg><svg class="paw" style="--step:4" viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="28" rx="10" ry="8"/><ellipse cx="7" cy="18" rx="4" ry="5" transform="rotate(-25 7 18)"/><ellipse cx="15" cy="10" rx="4" ry="5"/><ellipse cx="25" cy="10" rx="4" ry="5"/><ellipse cx="33" cy="18" rx="4" ry="5" transform="rotate(25 33 18)"/></svg><svg class="paw" style="--step:5" viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="28" rx="10" ry="8"/><ellipse cx="7" cy="18" rx="4" ry="5" transform="rotate(-25 7 18)"/><ellipse cx="15" cy="10" rx="4" ry="5"/><ellipse cx="25" cy="10" rx="4" ry="5"/><ellipse cx="33" cy="18" rx="4" ry="5" transform="rotate(25 33 18)"/></svg><svg class="paw" style="--step:6" viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="28" rx="10" ry="8"/><ellipse cx="7" cy="18" rx="4" ry="5" transform="rotate(-25 7 18)"/><ellipse cx="15" cy="10" rx="4" ry="5"/><ellipse cx="25" cy="10" rx="4" ry="5"/><ellipse cx="33" cy="18" rx="4" ry="5" transform="rotate(25 33 18)"/></svg></div>
 <section class="activities" aria-label="VTuberとVRChatの活動紹介">
 <article class="activity-card">
 <figure class="activity-photo birthday-photo">
