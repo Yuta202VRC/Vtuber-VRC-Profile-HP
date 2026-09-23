@@ -606,3 +606,12 @@ body { isolation: isolate; }
   .link-card:active, .activity-body > a:active { transform: none; }
 }
 @media(max-width:700px) { .paw-trail { margin-top: -14px; } }
+
+/* Discourage casual image dragging and selection. */
+img { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+
+/* A compact trail with alternating left and right paw prints. */
+.paw-trail { justify-content: center; gap: clamp(12px, 4vw, 36px); height: 44px; }
+.paw { flex: 0 0 25px; width: 25px; height: 25px; }
+.paw:nth-child(even) { align-self: flex-start; rotate: 65deg; }
+.paw:nth-child(odd) { align-self: flex-end; rotate: 85deg; }

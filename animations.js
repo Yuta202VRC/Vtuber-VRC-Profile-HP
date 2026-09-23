@@ -49,3 +49,10 @@
   finePointer.addEventListener('change', () => tilts.forEach(el => el.style.transform = ''));
   setupMotion();
 })();
+
+// Limit these restrictions to images; text selection and links remain usable.
+for (const image of document.querySelectorAll('img')) {
+  image.draggable = false;
+  image.addEventListener('dragstart', event => event.preventDefault());
+  image.addEventListener('contextmenu', event => event.preventDefault());
+}
